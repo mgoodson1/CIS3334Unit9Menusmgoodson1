@@ -1,5 +1,7 @@
 package edu.css.mgoodson1.cis3334_unit9_menus_mgoodson1;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -29,6 +31,12 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                emailIntent.setType("*/*");
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT,"Hey Study Partner");
+                if (emailIntent.resolveActivity(getPackageManager()) != null){
+                    startActivity(emailIntent);
+                }
             }
         });
 
@@ -67,7 +75,29 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        if (id == R.id.action_add) {
+            Snackbar.make(getWindow().getDecorView(), "Add Study mates not implmented", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }
+        if (id == R.id.action_delete) {
+            return true;
+        }
         if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
+            return true;
+        }
+        if (id == R.id.action_email) {
+            Intent emailIntent = new Intent(Intent.ACTION_SEND);
+            //emailIntent.setData(Uri.parse("mailto:")); // only email apps should handle this
+            emailIntent.setType("*/*");
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT,"Hey Study Partner");
+            if (emailIntent.resolveActivity(getPackageManager()) != null){
+                startActivity(emailIntent);
+            }
+            return true;
+        }
+        if (id == R.id.action_sms) {
             return true;
         }
 
