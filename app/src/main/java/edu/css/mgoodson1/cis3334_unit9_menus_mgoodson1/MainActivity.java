@@ -76,10 +76,13 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_add) {
-            Snackbar.make(getWindow().getDecorView(), "Add Study mates not implmented", Snackbar.LENGTH_LONG)
+            Snackbar.make(getWindow().getDecorView(), "Add: Add Study mates not implmented", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
+            return true;
         }
         if (id == R.id.action_delete) {
+            Snackbar.make(getWindow().getDecorView(), "Delete: Add Study mates not implmented", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
             return true;
         }
         if (id == R.id.action_settings) {
@@ -98,6 +101,8 @@ public class MainActivity extends AppCompatActivity
             return true;
         }
         if (id == R.id.action_sms) {
+            Snackbar.make(getWindow().getDecorView(), "SMS:Add Study mates not implmented", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
             return true;
         }
 
