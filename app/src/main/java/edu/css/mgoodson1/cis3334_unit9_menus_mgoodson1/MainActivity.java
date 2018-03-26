@@ -100,8 +100,11 @@ public class MainActivity extends AppCompatActivity
             return true;
         }
         if (id == R.id.action_sms) {
-            Snackbar.make(getWindow().getDecorView(), "SMS:Add Study mates not implmented", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            Intent smsIntent = new Intent(Intent.ACTION_SENDTO);
+            smsIntent.setData(Uri.parse("smsto:"));  // This ensures only SMS apps respond
+            if (smsIntent.resolveActivity(getPackageManager()) != null){
+                startActivity(smsIntent);
+            }
             return true;
         }
 
@@ -114,22 +117,44 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.nav_action_add) {
+            Snackbar.make(getWindow().getDecorView(), "Add: Add Study mates not implmented", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+            //return true;
+        }
+        if (id == R.id.nav_action_delete) {
+            Snackbar.make(getWindow().getDecorView(), "Delete: Add Study mates not implmented", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+            //return true;
+        }
+        if (id == R.id.nav_action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
+            //return true;
+        }
+        if (id == R.id.nav_action_email) {
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+            emailIntent.setData(Uri.parse("mailto:")); // only email apps should handle this
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT,"Hey Study Partner");
+            if (emailIntent.resolveActivity(getPackageManager()) != null){
+                startActivity(emailIntent);
+            }
+            //return true;
+        }
+        if (id == R.id.nav_action_sms) {
+            Intent smsIntent = new Intent(Intent.ACTION_SENDTO);
+            smsIntent.setData(Uri.parse("smsto:"));  // This ensures only SMS apps respond
+            if (smsIntent.resolveActivity(getPackageManager()) != null){
+                startActivity(smsIntent);
+            }
+            //return true;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-        return true;
+
+        return super.onOptionsItemSelected(item);
+
+
     }
 }
