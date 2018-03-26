@@ -91,9 +91,8 @@ public class MainActivity extends AppCompatActivity
             return true;
         }
         if (id == R.id.action_email) {
-            Intent emailIntent = new Intent(Intent.ACTION_SEND);
-            //emailIntent.setData(Uri.parse("mailto:")); // only email apps should handle this
-            emailIntent.setType("*/*");
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+            emailIntent.setData(Uri.parse("mailto:")); // only email apps should handle this
             emailIntent.putExtra(Intent.EXTRA_SUBJECT,"Hey Study Partner");
             if (emailIntent.resolveActivity(getPackageManager()) != null){
                 startActivity(emailIntent);
